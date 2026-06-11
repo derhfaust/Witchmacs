@@ -155,6 +155,7 @@ One of the main selling points of Emacs! no Emacs distribution is complete witho
                  (visual-line-mode 1))))
 
   (use-package org-indent
+    :ensure nil
     :diminish org-indent-mode)
 
   (use-package htmlize
@@ -580,6 +581,7 @@ Git porcelain for Emacs
 *** Code
 #+BEGIN_SRC emacs-lisp
   (use-package abbrev
+    :ensure nil
     :diminish abbrev-mode)
 #+END_SRC
 * Programming section
@@ -588,7 +590,17 @@ Git porcelain for Emacs
 Company is the autocompletion frontend that takes all the backends and gives you possible autocompletions when writing programs
 *** Code
 #+BEGIN_SRC emacs-lisp
-  (use-package company
+  ;; irony replaced with eglot (built-in, Emacs 29+) + clangd
+;; Install clangd: sudo apt install clangd  OR  sudo pacman -S clang
+(use-package eglot
+  :ensure nil
+  :hook ((c-mode . eglot-ensure)
+         (c++-mode . eglot-ensure))
+  :config
+  (add-to-list 'eglot-server-programs
+               '((c-mode c++-mode) . ("clangd"))))
+
+(use-package company
     :ensure t
     :diminish (meghanada-mode company-mode irony-mode)
     :config
@@ -627,33 +639,21 @@ Irony is the company backend for C and C++
     :defer nil
     :ensure t)
 
-  (use-package company-irony
-    :defer nil
-    :ensure t
-    :config
-    (setq company-backends '((company-c-headers
-                              company-dabbrev-code
-                              company-irony))))
-  (use-package irony
-    :defer nil
-    :ensure t
-    :config
-    :hook
-    ((c++-mode c-mode) . irony-mode)
-    ('irony-mode-hook) . 'irony-cdb-autosetup-compile-options)
+  
 #+END_SRC
 ** Java
 *** Description
 I use meghanada to provide very neat autocompletion when editing Java files. I use it mainly for autocompletion but there's a ton of other things it can do, automatic imports, for example.
 *** Code
 #+BEGIN_SRC emacs-lisp
-  (use-package meghanada
-    :ensure t
-    :defer nil
-    :config
-    (add-hook 'java-mode-hook
-              (lambda ()
-                (meghanada-mode t)))
-    (setq meghanada-java-path "java")
-    (setq meghanada-maven-path "mvn"))
+  
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+;; meghanada is dead — replaced with eglot + eclipse.jdt.ls
+;; On first use in a .java file, run M-x eglot and select jdtls.
+(use-package eglot
+  :ensure nil
+  :hook (java-mode . eglot-ensure))
+
 #+END_SRC
