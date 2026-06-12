@@ -314,6 +314,17 @@ The frontend of Witchmacs; without this there'd be no Marisa in your Emacs start
       (switch-to-buffer (get-buffer-create "*scratch*"))
       (lisp-interaction-mode))
     :config
+    (setq dashboard-startupify-list
+      '(dashboard-insert-banner
+        dashboard-insert-newline
+        dashboard-insert-banner-title
+        dashboard-insert-newline
+        dashboard-insert-navigator
+        dashboard-insert-newline
+        dashboard-insert-init-info
+        dashboard-insert-items
+        dashboard-insert-newline
+        dashboard-insert-footer))
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 5)))
     (setq dashboard-banner-logo-title "W I T C H M A C S - The cutest Emacs distribution!")
@@ -324,37 +335,21 @@ The frontend of Witchmacs; without this there'd be no Marisa in your Emacs start
     (setq dashboard-init-info (format "%d packages loaded in %s"
                                       (length package-activated-list) (emacs-init-time)))
     (setq dashboard-set-footer nil)
-    (setq dashboard-set-navigator t)
     (setq dashboard-navigator-buttons
-          `(;; line1
-            ((,nil
-              "Witchmacs on github"
-              "Open Witchmacs' github page on your browser"
-              (lambda (&rest _) (browse-url "https://github.com/derhfaust/witchmacs"))
-              'default)
-             (nil
-              "Witchmacs crash course"
-              "Open Witchmacs' introduction to Emacs"
-              (lambda (&rest _) (find-file "~/.emacs.d/Witcheat.org"))
-              'default)
-             (nil
-              "Update Witchmacs"
-              "Get the latest Witchmacs update. Check out the github commits for changes!"
-              (lambda (&rest _) (update-config))
-              'default)
-             )
-            ;; line 2
-            ((,nil
-              "Open scratch buffer"
-              "Switch to the scratch buffer"
-              (lambda (&rest _) (create-scratch-buffer))
-              'default)
-             (nil
-              "Open config.org"
-              "Open Witchmacs' configuration file for easy editing"
-              (lambda (&rest _) (find-file "~/.emacs.d/config.org"))
-              'default)))))
-#+END_SRC
+      `((
+         (nil "Witchmacs on github" "Open Witchmacs' github page on your browser"
+              (lambda (&rest _) (browse-url "https://github.com/derhfaust/witchmacs")) default)
+         (nil "Witchmacs crash course" "Open Witchmacs' introduction to Emacs"
+              (lambda (&rest _) (find-file "~/.emacs.d/Witcheat.org")) default)
+         (nil "Update Witchmacs" "Get the latest Witchmacs update. Check out the github commits for changes!"
+              (lambda (&rest _) (update-config)) default)
+         )
+        (
+         (nil "Open scratch buffer" "Switch to the scratch buffer"
+              (lambda (&rest _) (create-scratch-buffer)) default)
+         (nil "Open config.org" "Open Witchmacs' configuration file for easy editing"
+              (lambda (&rest _) (find-file "~/.emacs.d/config.org")) default)
+         ))))
 *** Notes
 If you pay close attention to the code in dashboard, you'll  notice that it uses custom functions defined under the :preface use-package block. I wrote all of those functions by looking at other people's Emacs distributions (Mainly [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]) and then experimenting and adapting them to Witchmacs. If you dig around, you'll find the same things I did - maybe even more!
 *** Historical
