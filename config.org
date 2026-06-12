@@ -350,6 +350,7 @@ The frontend of Witchmacs; without this there'd be no Marisa in your Emacs start
          (nil "Open config.org" "Open Witchmacs' configuration file for easy editing"
               (lambda (&rest _) (find-file "~/.emacs.d/config.org")) default)
          ))))
+#+END_SRC
 *** Notes
 If you pay close attention to the code in dashboard, you'll  notice that it uses custom functions defined under the :preface use-package block. I wrote all of those functions by looking at other people's Emacs distributions (Mainly [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]) and then experimenting and adapting them to Witchmacs. If you dig around, you'll find the same things I did - maybe even more!
 *** Historical
