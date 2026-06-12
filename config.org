@@ -25,7 +25,7 @@ Yes - No! layers! onions have layers! ogres have layers!
 As opposed to many other Emacs distributions, Witchmacs has ZERO customization layers which means you can just jump in, look at the config file and start editing away! After all, Emacs works best when it's customized to your own liking!
 * Quick install
 #+BEGIN_SRC 
-git clone https://github.com/snackon/Witchmacs ~/.emacs.d
+git clone https://github.com/derhfaust/Witchmacs ~/.emacs.d
 #+END_SRC
 After running this command, the first time you run Emacs will download all of the specified packages in the config.org file, so please be patient!
 
