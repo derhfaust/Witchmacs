@@ -330,7 +330,7 @@ The frontend of Witchmacs; without this there'd be no Marisa in your Emacs start
             ((,nil
               "Witchmacs on github"
               "Open Witchmacs' github page on your browser"
-              (lambda (&rest _) (browse-url "https://github.com/snackon/witchmacs"))
+              (lambda (&rest _) (browse-url "https://github.com/derhfaust/witchmacs"))
               'default)
              (nil
               "Witchmacs crash course"
@@ -645,11 +645,8 @@ Irony is the company backend for C and C++
 #+END_SRC
 ** Java
 *** Description
-I use meghanada to provide very neat autocompletion when editing Java files. I use it mainly for autocompletion but there's a ton of other things it can do, automatic imports, for example.
+Meghanada is no longer updated, use eglot instead (You can always disable if you don't need Java support).
 *** Code
-#+BEGIN_SRC emacs-lisp
-  
-#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 ;; meghanada is dead — replaced with eglot + eclipse.jdt.ls
