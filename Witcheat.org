@@ -105,4 +105,11 @@ What the 'Update Witchmacs' button does is run the 'git pull' command from the s
 
 And finally, to change whether to display loaded packages or not, set `(setq dashboard-set-init-info t)` to 'nil' instead of 't'. For further customization options, refer to the [[https://github.com/emacs-dashboard/emacs-dashboard][emacs dashboard]] page on github.
 
+A quick note on completion: when you use commands like ~C-x C-f~ (find
+file) or ~M-x~ (run command), you'll see a vertical list of matching
+candidates (powered by Vertico). You don't need to type things in
+order — typing space-separated fragments will match candidates
+containing all of them in any order (powered by Orderless). For
+example, typing ~con fil~ in ~M-x~ will match ~customize-file~.
+
 #+Witchmacs cheatsheet is a work in progress!
