@@ -333,7 +333,7 @@ The frontend of Witchmacs; without this there'd be no Marisa in your Emacs start
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 5)))
     (setq dashboard-banner-logo-title "W I T C H M A C S - The cutest Emacs distribution!")
-    (setq dashboard-startup-banner "~/.emacs.d/marivector.png")
+    (setq dashboard-startup-banner (expand-file-name "marivector.png" user-emacs-directory))
     (setq dashboard-center-content t)
     (setq dashboard-show-shortcuts nil)
     (setq dashboard-set-init-info t)
@@ -446,27 +446,42 @@ Switch window is a neat package because instead of having to painstakingly do C 
 	:bind
 	([remap other-window] . switch-window))
 #+END_SRC
-** Initialize =ido= and =ido-vertical=
-*** Description
-For the longest time I used the default way of switching and killing buffers in Emacs. Same for finding files. Ido-mode made these three tasks IMMENSELY easier and more intuitive. Please not that I still use the default way M - x works because I believe all you really need for it is which-key
-*** Code
-#+BEGIN_SRC emacs-lisp
-  (use-package ido
-    :init
-    (ido-mode 1)
-    :config
-    (setq ido-enable-flex-matching nil)
-    (setq ido-create-new-buffer 'always)
-    (setq ido-everywhere t))
+** Initialize =vertico=, =orderless=, and =marginalia=
 
-  (use-package ido-vertical-mode
-    :ensure t
-    :init
-    (ido-vertical-mode 1))
-  ; This enables arrow keys to select while in ido mode. If you want to
-  ; instead use the default Emacs keybindings, change it to
-  ; "'C-n-and-C-p-only"
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
+*** Description
+
+Modern minibuffer completion stack for Emacs 28+. Vertico provides a
+vertical completion UI, orderless allows flexible out-of-order fuzzy
+matching, and marginalia adds helpful annotations (file sizes, command
+descriptions, etc.) to completion candidates. This replaces ido and
+ido-vertical-mode, which are showing their age compared to this stack.
+
+*** Code
+
+#+BEGIN_SRC emacs-lisp
+(use-package vertico
+  :ensure t
+  :defer nil
+  :init
+  (vertico-mode))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :ensure t
+  :defer nil
+  :init
+  (marginalia-mode))
+
+;; Enable richer annotations and previews when using M-x, switch-buffer, etc.
+(use-package savehist
+  :ensure nil
+  :init
+  (savehist-mode))
 #+END_SRC
 ** Initialize =async=
 *** Description
