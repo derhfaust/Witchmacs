@@ -280,17 +280,27 @@ I tried spaceline and didn't like it. What I did like was its theme
   (use-package spaceline
     :ensure t)
 #+END_SRC
-** Initialize =powerline= and utilize the spaceline theme
+** Initialize =doom-modeline=
+
 *** Description
-I prefer powerline over spaceline, but the default powerline themes don't work for me for whatever reason, so I use the spaceline theme
+
+doom-modeline is a modern, actively maintained modeline with native
+support for eglot/flymake diagnostics, VC status, and icons. It
+replaces spaceline + powerline, which are unmaintained and have a
+malformed hook in the previous config.
+
 *** Code
+
 #+BEGIN_SRC emacs-lisp
-  (use-package powerline
-	:ensure t
-	:init
-	(spaceline-spacemacs-theme)
-	:hook
-	('after-init-hook) . 'powerline-reset)
+(use-package doom-modeline
+  :ensure t
+  :defer nil
+  :init
+  (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-height 25)
+  (setq doom-modeline-icon t)
+  (setq doom-modeline-minor-modes nil))
 #+END_SRC
 ** Initialize =dashboard=
 *** Description
