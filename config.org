@@ -31,11 +31,16 @@ After running this command, the first time you run Emacs will download all of th
 
 Also, to get autocompletion on C, C++ and Java files, you'll need to install the corresponding company backend servers first (you'll be automatically prompted to do so the first time you open a relevant file)
 * Dependencies
-=clang= as backend for C and C++ autocompletion
 
-=llvm= to install irony server
+~clangd~ as the language server backend for C and C++ autocompletion (via ~eglot~)
 
-(optional) =mvn= maven for java project handling through =meghanada=
+~jdtls~ (Eclipse JDT Language Server) for Java autocompletion (via ~eglot~) — Emacs will prompt to download/configure this automatically the first time you open a ~.java~ file and run ~M-x eglot~
+
+** Installing clangd
+
+- Debian/Ubuntu: ~sudo apt install clangd~
+- Arch: ~sudo pacman -S clang~
+- Fedora: ~sudo dnf install clang-tools-extra~
 * Things-to-do
 - Add and configure some extra packages
 - +Make dashboard cooler+
