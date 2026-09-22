@@ -65,7 +65,7 @@
   '(async auto-package-update avy beacon company-c-headers dashboard
     diminish doom-modeline htmlize magit marginalia orderless
     page-break-lines switch-window treemacs-evil treemacs-icons-dired
-    undo-tree vertico yasnippet yasnippet-snippets))
+    undo-tree vertico yasnippet yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
