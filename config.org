@@ -1,3 +1,6 @@
+#+begin_src emacs-lisp
+;;; config.el --- Witchmacs config -*- lexical-binding: t; -*-
+#+end_src
 #+STARTUP: overview
 #+TITLE: Witchmacs
 #+LANGUAGE: en
