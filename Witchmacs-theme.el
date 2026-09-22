@@ -1,3 +1,5 @@
+;;; Witchmacs-theme.el --- Marisa-themed color scheme -*- lexical-binding: t; -*-
+
 (deftheme Witchmacs
   "Created 2019-05-23.")
 
