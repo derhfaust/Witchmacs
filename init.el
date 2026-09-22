@@ -59,17 +59,6 @@
 ;; Restore GC after startup
 (add-hook 'emacs-startup-hook
           (lambda () (setq gc-cons-threshold (* 2 1000 1000))))
-;; Emacs 30 face-box compatibility shim
-;; Fixes themes that use :style unspecified in :box specs
-(defun witchmacs/fix-face-box (spec)
-  "Sanitize :box plist for Emacs 30 compatibility."
-  (if (and (listp spec) (plist-member spec :style))
-      (let ((s (plist-get spec :style)))
-        (if (eq s 'unspecified)
-            (org-plist-delete spec :style)
-          spec))
-    spec))
-
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
