@@ -43,18 +43,11 @@
 (load-theme 'Witchmacs t)
 
 ;; Load config.org for init.el configuration
-;; use-package is built-in since Emacs 29
-(unless (>= emacs-major-version 29)
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package)))
-(eval-when-compile (require 'use-package))
-(setq use-package-always-ensure t
-      use-package-expand-minimally t)
+(require 'use-package)
 
 ;; Silence native-comp warnings from old packages
 (setq native-comp-async-report-warnings-errors 'silent)
-(setq native-comp-deferred-compilation t)
+(setq native-comp-jit-compilation t)
 
 ;; Restore GC after startup
 (add-hook 'emacs-startup-hook
@@ -68,12 +61,11 @@
  '(custom-safe-themes
    '("d44b39527b22d5afe361d35bf894893a21ba4279a14fd1037a909150f5f74a3a"
 	 default))
- '(package-selected-packages
-   '(async auto-package-update beacon company-c-headers dashboard
-		   diminish htmlize ido-vertical-mode magit page-break-lines
-		   spaceline swiper switch-window treemacs-evil
-		   treemacs-icons-dired tron-legacy-theme undo-tree
-		   yasnippet-snippets)))
+'(package-selected-packages
+  '(async auto-package-update avy beacon company-c-headers dashboard
+    diminish doom-modeline htmlize magit marginalia orderless
+    page-break-lines switch-window treemacs-evil treemacs-icons-dired
+    undo-tree vertico yasnippet yasnippet-snippets))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
